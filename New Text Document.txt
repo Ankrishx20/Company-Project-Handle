@@ -1,0 +1,22 @@
+git --version
+git config --global user.name "Ankrish"
+git config --global user.email "ankrishkandpal1996@gmail.com"
+git init 				    //create .git folder\
+git clone url				    //Clone a Repo
+git status				    //track
+git add .				    //Add to staged
+git commit -m "initial commit"		    //Add to versioning
+git log					    //Check commit history
+git checkout				    //Remove update
+git diff name.txt			    //Check difference between files
+git remote add origin https://github.com/Ankrishx20/Company-Project-Handle.git
+git remote rm origin
+________________________________________________________________________________
+
+Upload Repo on Github
+1) git init
+2) git add .(all files)  /	git add index.html(single file)
+3) git status
+4) git commit -m "Initial commit"
+5) git remote add origin link (copy link from github)
+6) git push -u origin master (push code)

@@ -1,3 +1,6 @@
+
+import java.awt.Color;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -15,6 +18,8 @@ public class Admin extends javax.swing.JFrame {
      */
     public Admin() {
         initComponents();
+        jPanel1.setBackground(new Color(255,255,255,180));
+        jPanel3.setBackground(new Color(255,255,255,180));
     }
 
     /**

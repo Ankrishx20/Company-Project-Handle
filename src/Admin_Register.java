@@ -1,6 +1,5 @@
-
-
-
+import java.sql.*;
+import javax.swing.JOptionPane;
 public class Admin_Register extends javax.swing.JFrame {
     public Admin_Register() {
         initComponents();
@@ -39,8 +38,8 @@ public class Admin_Register extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        admin_email_register = new javax.swing.JTextField();
-        admin_password_register = new javax.swing.JPasswordField();
+        admin_email = new javax.swing.JTextField();
+        admin_pass = new javax.swing.JPasswordField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -48,16 +47,17 @@ public class Admin_Register extends javax.swing.JFrame {
         admin_submit_register = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        admin_cpassword_register = new javax.swing.JPasswordField();
+        admin_cpass = new javax.swing.JPasswordField();
         jSeparator5 = new javax.swing.JSeparator();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        admin_name_register = new javax.swing.JTextField();
-        admin_code_register = new javax.swing.JTextField();
+        admin_name = new javax.swing.JTextField();
+        code = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jSeparator10 = new javax.swing.JSeparator();
         jLabel22 = new javax.swing.JLabel();
         jSeparator11 = new javax.swing.JSeparator();
+        jButton1 = new javax.swing.JButton();
 
         jPanel3.setBackground(new java.awt.Color(37, 46, 67));
 
@@ -309,18 +309,20 @@ public class Admin_Register extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Email-id");
 
-        admin_email_register.setBackground(new java.awt.Color(37, 46, 67));
-        admin_email_register.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        admin_email_register.setForeground(new java.awt.Color(255, 255, 255));
-        admin_email_register.setBorder(null);
+        admin_email.setBackground(new java.awt.Color(37, 46, 67));
+        admin_email.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        admin_email.setForeground(new java.awt.Color(255, 255, 255));
+        admin_email.setBorder(null);
+        admin_email.setEnabled(false);
 
-        admin_password_register.setBackground(new java.awt.Color(37, 46, 67));
-        admin_password_register.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        admin_password_register.setForeground(new java.awt.Color(255, 255, 255));
-        admin_password_register.setBorder(null);
-        admin_password_register.addActionListener(new java.awt.event.ActionListener() {
+        admin_pass.setBackground(new java.awt.Color(37, 46, 67));
+        admin_pass.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        admin_pass.setForeground(new java.awt.Color(255, 255, 255));
+        admin_pass.setBorder(null);
+        admin_pass.setEnabled(false);
+        admin_pass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                admin_password_registerActionPerformed(evt);
+                admin_passActionPerformed(evt);
             }
         });
 
@@ -340,6 +342,7 @@ public class Admin_Register extends javax.swing.JFrame {
         admin_submit_register.setBorder(javax.swing.BorderFactory.createCompoundBorder());
         admin_submit_register.setBorderPainted(false);
         admin_submit_register.setContentAreaFilled(false);
+        admin_submit_register.setEnabled(false);
         admin_submit_register.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 admin_submit_registerActionPerformed(evt);
@@ -352,13 +355,14 @@ public class Admin_Register extends javax.swing.JFrame {
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8_Password_30px.png"))); // NOI18N
 
-        admin_cpassword_register.setBackground(new java.awt.Color(37, 46, 67));
-        admin_cpassword_register.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        admin_cpassword_register.setForeground(new java.awt.Color(255, 255, 255));
-        admin_cpassword_register.setBorder(null);
-        admin_cpassword_register.addActionListener(new java.awt.event.ActionListener() {
+        admin_cpass.setBackground(new java.awt.Color(37, 46, 67));
+        admin_cpass.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        admin_cpass.setForeground(new java.awt.Color(255, 255, 255));
+        admin_cpass.setBorder(null);
+        admin_cpass.setEnabled(false);
+        admin_cpass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                admin_cpassword_registerActionPerformed(evt);
+                admin_cpassActionPerformed(evt);
             }
         });
 
@@ -373,23 +377,24 @@ public class Admin_Register extends javax.swing.JFrame {
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Name");
 
-        admin_name_register.setBackground(new java.awt.Color(37, 46, 67));
-        admin_name_register.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        admin_name_register.setForeground(new java.awt.Color(255, 255, 255));
-        admin_name_register.setBorder(null);
-        admin_name_register.addActionListener(new java.awt.event.ActionListener() {
+        admin_name.setBackground(new java.awt.Color(37, 46, 67));
+        admin_name.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        admin_name.setForeground(new java.awt.Color(255, 255, 255));
+        admin_name.setBorder(null);
+        admin_name.setEnabled(false);
+        admin_name.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                admin_name_registerActionPerformed(evt);
+                admin_nameActionPerformed(evt);
             }
         });
 
-        admin_code_register.setBackground(new java.awt.Color(37, 46, 67));
-        admin_code_register.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        admin_code_register.setForeground(new java.awt.Color(255, 255, 255));
-        admin_code_register.setBorder(null);
-        admin_code_register.addActionListener(new java.awt.event.ActionListener() {
+        code.setBackground(new java.awt.Color(37, 46, 67));
+        code.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        code.setForeground(new java.awt.Color(255, 255, 255));
+        code.setBorder(null);
+        code.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                admin_code_registerActionPerformed(evt);
+                codeActionPerformed(evt);
             }
         });
 
@@ -403,14 +408,17 @@ public class Admin_Register extends javax.swing.JFrame {
         jSeparator11.setBackground(new java.awt.Color(98, 211, 197));
         jSeparator11.setForeground(new java.awt.Color(98, 211, 197));
 
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -429,24 +437,24 @@ public class Admin_Register extends javax.swing.JFrame {
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                         .addComponent(jLabel5)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(admin_email_register, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(admin_email, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING))
                                 .addGroup(jPanel2Layout.createSequentialGroup()
                                     .addComponent(jLabel6)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(admin_password_register, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(admin_pass, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(jPanel2Layout.createSequentialGroup()
                                     .addComponent(jLabel8)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(admin_cpassword_register, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE))
+                                    .addComponent(admin_cpass, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE))
                                 .addComponent(jSeparator5))
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel10)
                                 .addGroup(jPanel2Layout.createSequentialGroup()
                                     .addComponent(jLabel22)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(admin_name_register, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(admin_name, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(jPanel2Layout.createSequentialGroup()
                                     .addGap(2, 2, 2)
                                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -454,9 +462,18 @@ public class Admin_Register extends javax.swing.JFrame {
                                         .addGroup(jPanel2Layout.createSequentialGroup()
                                             .addComponent(jLabel11)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(admin_code_register, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(code, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addComponent(jSeparator10, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addContainerGap(50, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(21, 21, 21))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(60, 60, 60))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -468,15 +485,17 @@ public class Admin_Register extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(admin_code_register))
+                    .addComponent(code))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator10, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addGap(4, 4, 4)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(admin_name_register))
+                    .addComponent(admin_name))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jSeparator11, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -484,7 +503,7 @@ public class Admin_Register extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel5)
-                    .addComponent(admin_email_register, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(admin_email, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -492,7 +511,7 @@ public class Admin_Register extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
-                    .addComponent(admin_password_register, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(admin_pass, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -500,7 +519,7 @@ public class Admin_Register extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
-                    .addComponent(admin_cpassword_register, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(admin_cpass, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -514,23 +533,62 @@ public class Admin_Register extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void admin_password_registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admin_password_registerActionPerformed
+    private void admin_passActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admin_passActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_admin_password_registerActionPerformed
+    }//GEN-LAST:event_admin_passActionPerformed
 
     private void admin_submit_registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admin_submit_registerActionPerformed
-        Admin a1=new Admin();
-        a1.setVisible(true);
-        this.setVisible(false);
+        try
+        {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/comp_project","root","ankrish123");
+            {
+            
+            String aname=admin_name.getText();
+            String aemail=admin_email.getText();
+            char[] apass1=admin_pass.getPassword();
+            char[] checkpass1=admin_cpass.getPassword();
+            String apass=null;
+            apass=String.copyValueOf(apass1);
+            String cpass=null;
+            cpass=String.copyValueOf(checkpass1);
+                
+            
+            if((aname.isEmpty())||aemail.isEmpty()||apass.isEmpty()||cpass.isEmpty())
+                {
+                    JOptionPane.showMessageDialog(null,"Empty Fields Detected");
+                }
+                
+                
+                                                
+                if(cpass.equals(apass) && aname !=null && !aname.isEmpty()&& aemail!=null && !aemail.isEmpty() && apass!=null && !apass.isEmpty())
+                 {
+                    PreparedStatement stmt=con.prepareStatement("insert into admin_info(admin_name,admin_email,admin_pass)"+" values (?,?,?)");
+                    stmt.setString(1,aname);
+                    stmt.setString(2,aemail);
+                    stmt.setString(3,apass);
+                    stmt.executeUpdate();
+                    JOptionPane.showMessageDialog(null,"Details Registered Successfully");
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null,"Password doesnt or some fields are empty");
+                }
+            }
+    }
+    catch(ClassNotFoundException | SQLException e)
+    {
+        JOptionPane.showMessageDialog(null,"Problem With Connection");
+    }
     }//GEN-LAST:event_admin_submit_registerActionPerformed
 
-    private void admin_cpassword_registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admin_cpassword_registerActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_admin_cpassword_registerActionPerformed
+    private void admin_cpassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admin_cpassActionPerformed
+        
+    }//GEN-LAST:event_admin_cpassActionPerformed
 
-    private void admin_code_registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admin_code_registerActionPerformed
+    private void codeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_admin_code_registerActionPerformed
+    }//GEN-LAST:event_codeActionPerformed
 
     private void jPasswordField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField3ActionPerformed
         // TODO add your handling code here:
@@ -548,56 +606,35 @@ public class Admin_Register extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField6ActionPerformed
 
-    private void admin_name_registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admin_name_registerActionPerformed
+    private void admin_nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_admin_nameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_admin_name_registerActionPerformed
+    }//GEN-LAST:event_admin_nameActionPerformed
 
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String key="iamadmin";   
+        if(code.getText().equals(key))
+                {
+                    admin_name.setEnabled(true);
+                    admin_email.setEnabled(true);
+                    admin_pass.setEnabled(true);
+                    admin_cpass.setEnabled(true);
+                    admin_submit_register.setEnabled(true);
+                    
                 }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Admin_Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Admin_Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Admin_Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Admin_Register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Admin_Register().setVisible(true);
-            }
-        });
-    }
+                else
+                {
+                   JOptionPane.showMessageDialog(null,"Wrong Code Detected"); 
+                }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField admin_code_register;
-    private javax.swing.JPasswordField admin_cpassword_register;
-    private javax.swing.JTextField admin_email_register;
-    private javax.swing.JTextField admin_name_register;
-    private javax.swing.JPasswordField admin_password_register;
+    private javax.swing.JPasswordField admin_cpass;
+    private javax.swing.JTextField admin_email;
+    private javax.swing.JTextField admin_name;
+    private javax.swing.JPasswordField admin_pass;
     private javax.swing.JButton admin_submit_register;
+    private javax.swing.JTextField code;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

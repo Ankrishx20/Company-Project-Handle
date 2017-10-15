@@ -1,5 +1,8 @@
 import java.sql.*;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 public class Admin_Register extends javax.swing.JFrame {
     public Admin_Register() {
         initComponents();
@@ -563,19 +566,32 @@ public class Admin_Register extends javax.swing.JFrame {
                                                 
                 if(cpass.equals(apass) && aname !=null && !aname.isEmpty()&& aemail!=null && !aemail.isEmpty() && apass!=null && !apass.isEmpty())
                  {
+                     
+                    String[] options = {"Thanks"};
+                    JPanel panel = new JPanel();
+                    JLabel lbl = new JLabel("Detail Registered Successfully !");
+                    panel.add(lbl);
                     PreparedStatement stmt=con.prepareStatement("insert into admin_info(admin_name,admin_email,admin_pass)"+" values (?,?,?)");
                     stmt.setString(1,aname);
                     stmt.setString(2,aemail);
                     stmt.setString(3,apass);
                     stmt.executeUpdate();
-                    JOptionPane.showMessageDialog(null,"Details Registered Successfully");
+                    int selectedOption = JOptionPane.showOptionDialog(null, panel, "Successful Registration", JOptionPane.NO_OPTION, JOptionPane.NO_OPTION, null, options , options[0]);
+                    if(selectedOption==0)
+                    {
+                        this.setVisible(false);
+                        Admin a=new Admin();
+                        a.setVisible(true);
+                    }
+                    //  JOptionPane.showMessageDialog(null,"Details Registered Successfully");
+                    
                 }
                 else
                 {
                     JOptionPane.showMessageDialog(null,"Password doesnt or some fields are empty");
                 }
             }
-    }
+        }
     catch(ClassNotFoundException | SQLException e)
     {
         JOptionPane.showMessageDialog(null,"Problem With Connection");

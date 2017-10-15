@@ -1,4 +1,11 @@
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+
+
 public class Manager_login extends javax.swing.JFrame {
 
  
@@ -14,8 +21,8 @@ public class Manager_login extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jPasswordField1 = new javax.swing.JPasswordField();
         jLabel4 = new javax.swing.JLabel();
         Back_Button = new javax.swing.JButton();
         Register_Admin = new javax.swing.JButton();
@@ -46,8 +53,6 @@ public class Manager_login extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Product Sans", 0, 15)); // NOI18N
         jLabel2.setText("Password");
 
-        jTextField2.setFont(new java.awt.Font("Product Sans", 0, 17)); // NOI18N
-
         jButton1.setBackground(new java.awt.Color(46, 162, 204));
         jButton1.setFont(new java.awt.Font("Product Sans", 0, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(251, 251, 251));
@@ -68,17 +73,17 @@ public class Manager_login extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jPasswordField1, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(0, 236, Short.MAX_VALUE)
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jTextField2)
                             .addComponent(jTextField1))
-                        .addGap(20, 20, 20))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(20, 20, 20))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -90,8 +95,8 @@ public class Manager_login extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(49, Short.MAX_VALUE))
         );
@@ -164,9 +169,26 @@ public class Manager_login extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Manager m=new Manager();
-        m.setVisible(true);
-        this.setVisible(false);
+        if(jTextField1.getText().length()==0)
+				JOptionPane.showMessageDialog(null,"Empty Fields Detected");
+			
+				else if(jPasswordField1.getPassword().length==0)
+				JOptionPane.showMessageDialog(null,"Empty Fields Detected");
+				else
+				{
+					String uid= jTextField1.getText();
+                			char[] pid= jPasswordField1.getPassword();			
+					String p=String.copyValueOf(pid);
+
+					if(validate_login(uid,p))
+                                        {
+                                        Manager m1=new Manager();
+                                        m1.setVisible(true);
+                                        this.setVisible(false);
+                                        }
+					else
+					JOptionPane.showMessageDialog(null,"Login Unsuccessful");
+				}
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void Back_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Back_ButtonActionPerformed
@@ -181,42 +203,6 @@ public class Manager_login extends javax.swing.JFrame {
        mr.setVisible(true);    
        this.setVisible(false);
     }//GEN-LAST:event_Register_AdminActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Admin_login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Admin_login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Admin_login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Admin_login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Manager_login().setVisible(true);
-            }
-        });
-    }
-
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back_Button;
@@ -227,7 +213,30 @@ public class Manager_login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
+
+    private boolean validate_login(String memail, String mpass) {
+			try
+			{
+				Class.forName("com.mysql.jdbc.Driver");
+				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/comp_project","root","ankrish123");
+				PreparedStatement stmt=con.prepareStatement("select manager_email, manager_pass from manager_info where manager_email=? and manager_pass=?");
+				stmt.setString(1,memail);
+				stmt.setString(2,mpass);
+				ResultSet rs=stmt.executeQuery();
+				if(rs.next())
+				return true;
+				else
+				return false;
+			}
+
+			catch(Exception e)
+			{
+				e.printStackTrace();
+				return false;
+			}
+
+		}
 }

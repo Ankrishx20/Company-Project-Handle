@@ -1,3 +1,12 @@
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 public class Manager_Register extends javax.swing.JFrame {
 
     public Manager_Register() {
@@ -11,19 +20,20 @@ public class Manager_Register extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        manager_name = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        manager_email = new javax.swing.JTextField();
+        manager_submit_register = new javax.swing.JButton();
+        manager_pass = new javax.swing.JPasswordField();
+        manager_cpass = new javax.swing.JPasswordField();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        code = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Manager Registration");
@@ -41,6 +51,8 @@ public class Manager_Register extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Product Sans", 0, 15)); // NOI18N
         jLabel4.setText("Name:");
 
+        manager_name.setEnabled(false);
+
         jLabel5.setFont(new java.awt.Font("Product Sans", 0, 15)); // NOI18N
         jLabel5.setText("Email:");
 
@@ -50,16 +62,16 @@ public class Manager_Register extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Product Sans", 0, 15)); // NOI18N
         jLabel7.setText("Confirm Password:");
 
-        jButton1.setBackground(new java.awt.Color(46, 162, 204));
-        jButton1.setFont(new java.awt.Font("Product Sans", 0, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Submit");
-        jButton1.setMaximumSize(new java.awt.Dimension(69, 27));
-        jButton1.setMinimumSize(new java.awt.Dimension(69, 27));
-        jButton1.setPreferredSize(new java.awt.Dimension(69, 27));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        manager_submit_register.setBackground(new java.awt.Color(46, 162, 204));
+        manager_submit_register.setFont(new java.awt.Font("Product Sans", 0, 14)); // NOI18N
+        manager_submit_register.setForeground(new java.awt.Color(255, 255, 255));
+        manager_submit_register.setText("Submit");
+        manager_submit_register.setMaximumSize(new java.awt.Dimension(69, 27));
+        manager_submit_register.setMinimumSize(new java.awt.Dimension(69, 27));
+        manager_submit_register.setPreferredSize(new java.awt.Dimension(69, 27));
+        manager_submit_register.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                manager_submit_registerActionPerformed(evt);
             }
         });
 
@@ -67,17 +79,17 @@ public class Manager_Register extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(manager_cpass)
+                    .addComponent(manager_pass, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jTextField3)
-                    .addComponent(jTextField5)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(manager_submit_register, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(manager_email, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(manager_name)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
                             .addComponent(jLabel5)
@@ -92,21 +104,21 @@ public class Manager_Register extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(manager_name, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(manager_email, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(manager_pass, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(manager_cpass, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(manager_submit_register, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
@@ -128,7 +140,7 @@ public class Manager_Register extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(0, 250, Short.MAX_VALUE))
-                    .addComponent(jTextField1)
+                    .addComponent(code)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel3)))
@@ -140,7 +152,7 @@ public class Manager_Register extends javax.swing.JFrame {
                 .addGap(11, 11, 11)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(code, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addGap(0, 18, Short.MAX_VALUE))
@@ -154,6 +166,13 @@ public class Manager_Register extends javax.swing.JFrame {
             }
         });
 
+        jButton3.setText("jButton3");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -162,6 +181,7 @@ public class Manager_Register extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton3)
                     .addComponent(jButton2)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -175,11 +195,13 @@ public class Manager_Register extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton3)
+                .addGap(28, 28, 28)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         pack();
@@ -191,9 +213,78 @@ public class Manager_Register extends javax.swing.JFrame {
        this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void manager_submit_registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manager_submit_registerActionPerformed
+        try
+        {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/comp_project","root","ankrish123");
+            { 
+            String mname=manager_name.getText();
+            String memail=manager_email.getText();
+            char[] mpass1=manager_pass.getPassword();
+            char[] mcpass1=manager_cpass.getPassword();
+            String mpass=null;
+            mpass=String.copyValueOf(mpass1);
+            String cpass=null;
+            cpass=String.copyValueOf(mcpass1);
+                
+            
+            if((mname.isEmpty())||memail.isEmpty()||mpass.isEmpty()||cpass.isEmpty())
+                {
+                    JOptionPane.showMessageDialog(null,"Empty Fields Detected");
+                }
+                
+                
+                                                
+                if(cpass.equals(mpass) && mname !=null && !mname.isEmpty()&& memail!=null && !memail.isEmpty() && mpass!=null && !mpass.isEmpty())
+                 {
+                    String[] options = {"Ok"};
+                    JPanel panel = new JPanel();
+                    JLabel lbl = new JLabel("Detail Registered Successfully !");
+                    panel.add(lbl);
+                    PreparedStatement stmt=con.prepareStatement("insert into manager_info(manager_name,manager_email,manager_pass)"+" values (?,?,?)");
+                    stmt.setString(1,mname);
+                    stmt.setString(2,memail);
+                    stmt.setString(3,mpass);
+                    stmt.executeUpdate();
+                    int selectedOption = JOptionPane.showOptionDialog(null, panel, "Confirm", JOptionPane.NO_OPTION, JOptionPane.NO_OPTION, null, options , options[0]);
+                    if(selectedOption==0)
+                    {
+                        this.setVisible(false);
+                        Manager m=new Manager();
+                        m.setVisible(true);
+                    }
+                    //  JOptionPane.showMessageDialog(null,"Details Registered Successfully");
+                    
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null,"Password doesnt or some fields are empty");
+                }
+            }
+        }
+    catch(ClassNotFoundException | SQLException e)
+    {
+        JOptionPane.showMessageDialog(null,"Problem With Connection");
+    }
+    }//GEN-LAST:event_manager_submit_registerActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+     String key="iammanager";   
+        if(code.getText().equals(key))
+                {
+                    manager_name.setEnabled(true);
+                    manager_email.setEnabled(true);
+                    manager_pass.setEnabled(true);
+                    manager_cpass.setEnabled(true);
+                    manager_submit_register.setEnabled(true);
+                    
+                }
+                else
+                {
+                   JOptionPane.showMessageDialog(null,"Wrong Code Detected"); 
+                }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -231,8 +322,9 @@ public class Manager_Register extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JTextField code;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -242,10 +334,10 @@ public class Manager_Register extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JPasswordField manager_cpass;
+    private javax.swing.JTextField manager_email;
+    private javax.swing.JTextField manager_name;
+    private javax.swing.JPasswordField manager_pass;
+    private javax.swing.JButton manager_submit_register;
     // End of variables declaration//GEN-END:variables
 }

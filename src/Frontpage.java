@@ -42,7 +42,7 @@ public class Frontpage extends javax.swing.JFrame {
             }
         });
         jPanel1.add(Admin_front);
-        Admin_front.setBounds(120, 460, 140, 39);
+        Admin_front.setBounds(120, 460, 140, 46);
 
         SoftwareMan_front.setFont(new java.awt.Font("Product Sans", 0, 24)); // NOI18N
         SoftwareMan_front.setText("Software Manager");
@@ -52,7 +52,7 @@ public class Frontpage extends javax.swing.JFrame {
             }
         });
         jPanel1.add(SoftwareMan_front);
-        SoftwareMan_front.setBounds(400, 460, 240, 39);
+        SoftwareMan_front.setBounds(400, 460, 240, 46);
 
         Developer_front.setFont(new java.awt.Font("Product Sans", 0, 24)); // NOI18N
         Developer_front.setText("Developer");
@@ -62,7 +62,7 @@ public class Frontpage extends javax.swing.JFrame {
             }
         });
         jPanel1.add(Developer_front);
-        Developer_front.setBounds(770, 460, 150, 39);
+        Developer_front.setBounds(770, 460, 150, 46);
 
         admin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/admin-user-icon.png"))); // NOI18N
         jPanel1.add(admin);
@@ -109,7 +109,9 @@ public class Frontpage extends javax.swing.JFrame {
     }//GEN-LAST:event_SoftwareMan_frontActionPerformed
 
     private void Developer_frontActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Developer_frontActionPerformed
-        // TODO add your handling code here:
+        Developer_login dl=new Developer_login();
+        dl.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_Developer_frontActionPerformed
 
     public static void main(String args[]) {
